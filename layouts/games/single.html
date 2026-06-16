@@ -1,0 +1,37 @@
+{{ define "main" }}
+<article class="page game-page">
+  <header class="page__header split-header">
+    <div>
+      <p class="eyebrow">{{ .Params.eyebrow }}</p>
+      <h1>{{ .Title }}</h1>
+      <p class="page__lead">{{ .Params.description }}</p>
+      {{ with .Params.primaryCta }}
+      <a class="button button--primary" href="{{ .href }}"{{ if strings.HasPrefix .href "http" }} target="_blank" rel="noopener noreferrer"{{ end }}>{{ .label }}</a>
+      {{ end }}
+    </div>
+    <figure class="media-panel">
+      {{ partial "image.html" (dict "src" "/images/game/monster-alchemy-key-art.svg" "alt" .Params.coverAlt "width" "960" "height" "540" "loading" "eager") }}
+    </figure>
+  </header>
+
+  <section class="section" aria-labelledby="features">
+    <h2 id="features">{{ .Params.featuresTitle }}</h2>
+    <ul class="feature-list">
+      {{ range .Params.features }}
+      <li>{{ . }}</li>
+      {{ end }}
+    </ul>
+  </section>
+
+  <section class="section" aria-labelledby="visuals">
+    <h2 id="visuals">{{ .Params.visualsTitle }}</h2>
+    <figure class="media-panel">
+      {{ partial "image.html" (dict "src" "/images/game/monster-alchemy-screenshot.svg" "alt" .Params.screenshotAlt "width" "960" "height" "540") }}
+      <figcaption>{{ .Params.screenshotCaption }}</figcaption>
+    </figure>
+  </section>
+
+  <div class="prose">{{ .Content }}</div>
+</article>
+{{ end }}
+

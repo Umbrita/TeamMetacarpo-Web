@@ -69,7 +69,7 @@ A potential collaborator (publisher, media partner, fan) wants to reach out to T
 
 **Acceptance Scenarios**:
 
-1. **Given** a visitor is on the Contact page (`/en/contact` or `/es/contact`), **When** they load the page, **Then** they see a contact form with fields for name, email, subject, and message
+1. **Given** a visitor is on the Contact page (`/en/contact` or `/es/contact`), **When** they load the page, **Then** they see a contact form with visible fields for name, email, and message
 2. **Given** the visitor fills in all required fields with valid data, **When** they submit the form, **Then** the form validates client-side (required fields, valid email format) and either submits successfully or shows clear validation errors
 3. **Given** the form is submitted with valid data, **When** the submission completes, **Then** the user sees a success message confirming their message was received
 
@@ -129,7 +129,7 @@ A Spanish speaker visits the site in English but wants to switch to their native
 
 **FR-004**: System MUST display a Presskit page (`/en/presskit`, `/es/presskit`) with integrated dopresskit.com template for media assets and press inquiries (integration method TBD in planning phase)
 
-**FR-005**: System MUST display a Contact page (`/en/contact`, `/es/contact`) with a contact form that includes fields for name, email, subject, and message
+**FR-005**: System MUST display a Contact page (`/en/contact`, `/es/contact`) with a contact form that includes visible fields for name, email, and message, plus hidden fields for Web3Forms `access_key`, `subject`, and `botcheck`
 
 **FR-006**: System MUST display a Blog index (`/en/blog`, `/es/blog`) listing all blog posts by date (newest first) with title, date, author, category, and excerpt
 
@@ -139,7 +139,7 @@ A Spanish speaker visits the site in English but wants to switch to their native
 
 ### Functional Requirements - Contact Form
 
-**FR-008**: Contact form MUST validate required fields (name, email, subject, message) on the client side before submission
+**FR-008**: Contact form MUST validate required visible fields (name, email, message) on the client side before submission
 
 **FR-009**: Contact form MUST validate email format (basic RFC 5322 validation) and show clear error messages for invalid input
 
@@ -147,7 +147,7 @@ A Spanish speaker visits the site in English but wants to switch to their native
 
 **FR-011**: Upon successful submission, the form MUST display a success message confirming the message was received (e.g., "Thank you! Your message has been sent.")
 
-**FR-012**: Contact form submission MUST NOT expose email addresses or API keys in client-side code (no hardcoded endpoints, use progressive enhancement or static form submission)
+**FR-012**: Contact form submission MUST post to `https://api.web3forms.com/submit` and MUST NOT expose recipient email addresses or secret credentials in client-side code
 
 ---
 
@@ -259,11 +259,11 @@ A Spanish speaker visits the site in English but wants to switch to their native
 
 **FR-051**: Form content (user input) MUST NOT be rendered as innerHTML; use textContent or equivalent safe methods
 
-**FR-052**: Contact form submission MUST be handled securely (no API keys exposed, no email addresses hardcoded in client code)
+**FR-052**: Contact form submission MUST be handled securely with Web3Forms (no recipient email addresses or secret credentials hardcoded in client code; Web3Forms `access_key` is the required public form key)
 
-**FR-053**: Content Security Policy (CSP) header MUST be defined via meta tag; basic policy: `default-src 'self' *.google-analytics.com; script-src 'self' *.google-analytics.com`
+**FR-053**: Content Security Policy (CSP) header MUST be defined via meta tag; basic policy: `default-src 'self'; script-src 'self' *.google-analytics.com; connect-src 'self' *.google-analytics.com; form-action 'self' https://api.web3forms.com`
 
-**FR-054**: NO credentials (API keys, email addresses, authentication tokens) MUST be present anywhere in the codebase
+**FR-054**: NO secret credentials (recipient email addresses, authentication tokens, private API keys) MUST be present anywhere in the codebase; the Web3Forms `access_key` is allowed as provider-required public form configuration
 
 **FR-055**: All dependencies MUST be pinned to specific versions in lock files (if applicable)
 
@@ -341,7 +341,7 @@ A Spanish speaker visits the site in English but wants to switch to their native
 **SC-009**: Security is robust
 - No security issues flagged by browser console (mixed content, CSP violations, etc.)
 - External links include rel="noopener noreferrer"
-- No credentials or API keys appear in browser DevTools Network tab or Source tab
+- No secret credentials or recipient email addresses appear in browser DevTools Network tab or Source tab; the Web3Forms `access_key` may appear because it is required for static form submission
 
 **SC-010**: Visual identity is consistent
 - Color palette (dark backgrounds, warm light text) is used consistently
@@ -360,7 +360,7 @@ A Spanish speaker visits the site in English but wants to switch to their native
 **External Services**:
 - dopresskit.com is the official press kit platform; all press assets are managed there, not on the main site
 - Google Analytics 4 is the only third-party analytics service; other tracking tools are out of scope
-- Contact form submissions are handled via a static site solution (e.g., Formspree, Netlify Forms) or simple email delivery mechanism
+- Contact form submissions are handled via Web3Forms
 
 **Technology Stack**:
 - Static site generator (Astro, Hugo, or plain HTML/CSS/JS) will be decided in the planning phase
@@ -383,7 +383,7 @@ A Spanish speaker visits the site in English but wants to switch to their native
 - Privacy policy and terms of service will be defined separately (out of scope for this spec)
 
 **Form Submission**:
-- Contact form submissions do not require a backend; form service provider handles email delivery
+- Contact form submissions do not require a backend; Web3Forms handles email delivery
 - Form data is not stored in a database; each submission is sent as an email
 - No automated responses beyond a simple success message are expected
 
@@ -474,12 +474,18 @@ The tech stack (plain HTML/CSS/JS vs. Astro vs. Hugo) will be finalized during t
 
 ### Contact Form Implementation
 
-The contact form will be implemented using one of:
-1. Static form service (Formspree, Netlify Forms, Form.io)
-2. Simple HTML form with client-side validation (no submission if no backend)
-3. Email integration via build-time script
+The contact form will submit directly to Web3Forms:
 
-The exact approach will be decided during planning based on hosting platform.
+```html
+<form action="https://api.web3forms.com/submit" method="POST">
+  <input type="hidden" name="access_key" value="{{ WEB3FORMS_ACCESS_KEY }}">
+  <input type="hidden" name="subject" value="New Team Metacarpo contact form submission">
+  <input type="hidden" name="botcheck" value="">
+  <!-- Visible fields: name, email, message -->
+</form>
+```
+
+The real Web3Forms access key must be supplied by Team Metacarpo during implementation.
 
 ### Blog Post Structure
 

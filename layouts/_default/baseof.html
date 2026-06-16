@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="{{ .Site.Language.Lang }}">
+  <head>
+    {{ partial "head.html" . }}
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">{{ if eq .Site.Language.Lang "es" }}Saltar al contenido{{ else }}Skip to content{{ end }}</a>
+    {{ partial "header.html" . }}
+    <main id="main-content">
+      {{ block "main" . }}{{ end }}
+    </main>
+    {{ partial "footer.html" . }}
+    {{ $language := resources.Get "js/language.js" | minify | fingerprint }}
+    <script src="{{ $language.RelPermalink }}" defer></script>
+    {{ $consent := resources.Get "js/consent.js" | minify | fingerprint }}
+    <script src="{{ $consent.RelPermalink }}" defer></script>
+    {{ $analytics := resources.Get "js/analytics.js" | minify | fingerprint }}
+    <script src="{{ $analytics.RelPermalink }}" defer data-ga-id="{{ site.Params.ga4MeasurementId }}"></script>
+    {{ block "scripts" . }}{{ end }}
+  </body>
+</html>
+

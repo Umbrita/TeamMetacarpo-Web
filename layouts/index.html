@@ -1,0 +1,30 @@
+{{ define "main" }}
+<section class="hero">
+  <div class="hero__content">
+    <p class="eyebrow">{{ .Params.eyebrow }}</p>
+    <h1>{{ .Title }}</h1>
+    <p class="hero__lead">{{ .Params.heroLead }}</p>
+    {{ with .Params.primaryCta }}
+    <a class="button button--primary" href="{{ .href | relLangURL }}">{{ .label }}</a>
+    {{ end }}
+  </div>
+  <figure class="hero__media">
+    {{ partial "image.html" (dict "src" "/images/game/monster-alchemy-key-art.svg" "alt" .Params.heroImageAlt "width" "960" "height" "540" "loading" "eager") }}
+  </figure>
+</section>
+
+<section class="section section--feature" aria-labelledby="featured-game">
+  <div class="section__inner">
+    <div>
+      <p class="eyebrow">{{ .Params.featureEyebrow }}</p>
+      <h2 id="featured-game">{{ .Params.featureTitle }}</h2>
+      <p>{{ .Params.featureText }}</p>
+    </div>
+    <figure class="media-panel">
+      {{ partial "image.html" (dict "src" "/images/game/monster-alchemy-screenshot.svg" "alt" .Params.featureImageAlt "width" "960" "height" "540") }}
+      <figcaption>{{ .Params.featureCaption }}</figcaption>
+    </figure>
+  </div>
+</section>
+{{ end }}
+

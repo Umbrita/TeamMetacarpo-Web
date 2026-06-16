@@ -1,0 +1,30 @@
+baseURL = "https://teammetacarpo.com/"
+title = "Team Metacarpo"
+defaultContentLanguage = "en"
+defaultContentLanguageInSubdir = true
+disableKinds = ["RSS"]
+enableRobotsTXT = true
+
+[params]
+  description = "Official website for Team Metacarpo, an indie game studio from Barcelona creating Monster Alchemy."
+  defaultImage = "/images/og/team-metacarpo.svg"
+  ga4MeasurementId = ""
+  web3formsAccessKey = "{{ WEB3FORMS_ACCESS_KEY }}"
+  copyright = "Team Metacarpo"
+  presskitUrl = "https://dopresskit.com/"
+  monsterAlchemyUrl = "https://teammetacarpo.com/"
+
+  [[params.social]]
+    name = "Bluesky"
+    url = "https://bsky.app/"
+
+  [[params.social]]
+    name = "YouTube"
+    url = "https://www.youtube.com/"
+
+[taxonomies]
+  category = "categories"
+
+[markup.goldmark.renderer]
+  unsafe = false
+

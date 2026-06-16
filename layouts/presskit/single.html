@@ -1,0 +1,21 @@
+{{ define "main" }}
+<article class="page">
+  <header class="page__header">
+    <p class="eyebrow">{{ .Params.eyebrow }}</p>
+    <h1>{{ .Title }}</h1>
+    <p class="page__lead">{{ .Params.description }}</p>
+  </header>
+  <div class="prose">{{ .Content }}</div>
+  <section class="resource-list" aria-labelledby="press-resources">
+    <h2 id="press-resources">{{ .Params.resourcesTitle }}</h2>
+    {{ range .Params.resources }}
+    <article class="resource-list__item">
+      <h3>{{ .name }}</h3>
+      <p>{{ .description }}</p>
+      <a class="button" href="{{ .url }}" target="_blank" rel="noopener noreferrer">{{ .label }}</a>
+    </article>
+    {{ end }}
+  </section>
+</article>
+{{ end }}
+

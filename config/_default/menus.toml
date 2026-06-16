@@ -1,0 +1,40 @@
+[[main]]
+  name = "Home"
+  pageRef = "/"
+  weight = 10
+
+[[main]]
+  name = "About"
+  pageRef = "/about"
+  weight = 20
+
+[[main]]
+  name = "Monster Alchemy"
+  pageRef = "/games/monster-alchemy"
+  weight = 30
+
+[[main]]
+  name = "Presskit"
+  pageRef = "/presskit"
+  weight = 40
+
+[[main]]
+  name = "Blog"
+  pageRef = "/blog"
+  weight = 50
+
+[[main]]
+  name = "Contact"
+  pageRef = "/contact"
+  weight = 60
+
+[[footer]]
+  name = "Presskit"
+  pageRef = "/presskit"
+  weight = 10
+
+[[footer]]
+  name = "Contact"
+  pageRef = "/contact"
+  weight = 20
+

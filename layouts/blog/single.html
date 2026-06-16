@@ -1,0 +1,16 @@
+{{ define "main" }}
+<article class="page blog-post">
+  <header class="page__header">
+    <p class="meta">{{ time.Format "2006-01-02" .Date }} · {{ .Params.author }} · <a href="{{ relLangURL (printf "/categories/%s/" (urlize .Params.category)) }}">{{ .Params.category }}</a></p>
+    <h1>{{ .Title }}</h1>
+    <p class="page__lead">{{ .Params.excerpt }}</p>
+  </header>
+  {{ with .Params.coverImage }}
+  <figure class="media-panel">
+    {{ partial "image.html" (dict "src" . "alt" $.Params.coverAlt "width" "960" "height" "540") }}
+  </figure>
+  {{ end }}
+  <div class="prose">{{ .Content }}</div>
+</article>
+{{ end }}
+

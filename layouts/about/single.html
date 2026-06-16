@@ -1,0 +1,25 @@
+{{ define "main" }}
+<article class="page">
+  <header class="page__header split-header">
+    <div>
+      <p class="eyebrow">{{ .Params.eyebrow }}</p>
+      <h1>{{ .Title }}</h1>
+      <p class="page__lead">{{ .Params.description }}</p>
+    </div>
+    <figure class="media-panel">
+      {{ partial "image.html" (dict "src" "/images/studio/team-metacarpo-mark.svg" "alt" .Params.imageAlt "width" "640" "height" "360") }}
+    </figure>
+  </header>
+  <div class="prose">{{ .Content }}</div>
+  <section class="values" aria-labelledby="values">
+    <h2 id="values">{{ .Params.valuesTitle }}</h2>
+    {{ range .Params.values }}
+    <article>
+      <h3>{{ .name }}</h3>
+      <p>{{ .text }}</p>
+    </article>
+    {{ end }}
+  </section>
+</article>
+{{ end }}
+

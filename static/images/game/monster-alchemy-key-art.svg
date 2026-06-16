@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 540" role="img" aria-label="Monster Alchemy key art placeholder">
+  <rect width="960" height="540" fill="#111827"/>
+  <rect x="82" y="78" width="796" height="384" fill="#0a0e1a" stroke="#e8d5b7" stroke-width="4"/>
+  <path d="M436 158h88v116l70 112c20 32-3 74-41 74H407c-38 0-61-42-41-74l70-112z" fill="#233047" stroke="#e8d5b7" stroke-width="8"/>
+  <path d="M418 374c36-42 82-32 118-6 28 20 56 16 80-8l22 35c-22 42-62 65-118 65H408c-22 0-36-24-24-43z" fill="#c9b499"/>
+  <text x="132" y="142" fill="#e8d5b7" font-family="Arial, sans-serif" font-size="34">Monster Alchemy</text>
+</svg>
+

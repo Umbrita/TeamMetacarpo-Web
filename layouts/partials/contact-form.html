@@ -1,0 +1,27 @@
+{{ $isSpanish := eq .Site.Language.Lang "es" }}
+<form class="contact-form" action="https://api.web3forms.com/submit" method="POST" data-contact-form>
+  <input type="hidden" name="access_key" value="{{ site.Params.web3formsAccessKey }}">
+  <input type="hidden" name="subject" value="{{ if $isSpanish }}Nuevo mensaje desde Team Metacarpo{{ else }}New Team Metacarpo contact form submission{{ end }}">
+  <input type="hidden" name="botcheck" value="">
+  <input type="hidden" name="language" value="{{ .Site.Language.Lang }}">
+
+  <p class="form-status" data-form-status aria-live="polite"></p>
+
+  <div class="field">
+    <label for="contact-name">{{ if $isSpanish }}Nombre{{ else }}Name{{ end }}</label>
+    <input id="contact-name" name="name" type="text" autocomplete="name" required>
+  </div>
+
+  <div class="field">
+    <label for="contact-email">{{ if $isSpanish }}Email{{ else }}Email{{ end }}</label>
+    <input id="contact-email" name="email" type="email" autocomplete="email" required>
+  </div>
+
+  <div class="field">
+    <label for="contact-message">{{ if $isSpanish }}Mensaje{{ else }}Message{{ end }}</label>
+    <textarea id="contact-message" name="message" rows="7" required></textarea>
+  </div>
+
+  <button class="button button--primary" type="submit">{{ if $isSpanish }}Enviar mensaje{{ else }}Send Message{{ end }}</button>
+</form>
+

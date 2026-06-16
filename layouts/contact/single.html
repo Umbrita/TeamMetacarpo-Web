@@ -1,0 +1,19 @@
+{{ define "main" }}
+<article class="page contact-page">
+  <header class="page__header">
+    <p class="eyebrow">{{ .Params.eyebrow }}</p>
+    <h1>{{ .Title }}</h1>
+    <p class="page__lead">{{ .Params.description }}</p>
+  </header>
+  <div class="contact-grid">
+    <div class="prose">{{ .Content }}</div>
+    {{ partial "contact-form.html" . }}
+  </div>
+</article>
+{{ end }}
+
+{{ define "scripts" }}
+  {{ $contact := resources.Get "js/contact-form.js" | minify | fingerprint }}
+  <script src="{{ $contact.RelPermalink }}" defer></script>
+{{ end }}
+

@@ -1,0 +1,20 @@
+{{ define "main" }}
+<section class="page">
+  <header class="page__header">
+    <p class="eyebrow">{{ if eq .Site.Language.Lang "es" }}Categoria{{ else }}Category{{ end }}</p>
+    <h1>{{ .Title }}</h1>
+  </header>
+  <div class="listing">
+    {{ range .Pages.ByDate.Reverse }}
+    {{ if eq .Lang $.Site.Language.Lang }}
+    <article class="listing__item">
+      <p class="meta">{{ time.Format "2006-01-02" .Date }} · {{ .Params.author }}</p>
+      <h2><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
+      <p>{{ .Params.excerpt }}</p>
+    </article>
+    {{ end }}
+    {{ end }}
+  </div>
+</section>
+{{ end }}
+

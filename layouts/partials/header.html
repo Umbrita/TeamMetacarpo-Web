@@ -1,0 +1,27 @@
+<header class="site-header">
+  <div class="site-header__inner">
+    <a class="site-brand" href="{{ relLangURL "/" }}" aria-label="Team Metacarpo">
+      <span class="site-brand__mark" aria-hidden="true">TM</span>
+      <span class="site-brand__name">Team Metacarpo</span>
+    </a>
+    {{ $items := slice
+      (dict "en" "Home" "es" "Inicio" "url" "/")
+      (dict "en" "About" "es" "Estudio" "url" "/about")
+      (dict "en" "Monster Alchemy" "es" "Monster Alchemy" "url" "/games/monster-alchemy")
+      (dict "en" "Presskit" "es" "Presskit" "url" "/presskit")
+      (dict "en" "Blog" "es" "Blog" "url" "/blog")
+      (dict "en" "Contact" "es" "Contacto" "url" "/contact")
+    }}
+    <nav class="site-nav" aria-label="{{ if eq .Site.Language.Lang "es" }}Navegacion principal{{ else }}Main navigation{{ end }}">
+      <ul class="site-nav__list">
+        {{ range $items }}
+        <li>
+          {{ $href := .url | relLangURL }}
+          <a class="site-nav__link{{ if eq $.RelPermalink $href }} is-active{{ end }}" href="{{ $href }}">{{ index . $.Site.Language.Lang }}</a>
+        </li>
+        {{ end }}
+      </ul>
+    </nav>
+    {{ partial "language-switcher.html" . }}
+  </div>
+</header>

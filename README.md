@@ -1,48 +1,57 @@
-Team Metacarpo — Official Website
+# Team Metacarpo Web
 
-Official website for Team Metacarpo, an indie game studio from Barcelona. The site presents the studio and its main project Monster Alchemy, targeting players, press, and publishers.
+Official static website for Team Metacarpo, an indie game studio from Barcelona and creators of Monster Alchemy.
 
-Project Status
+The site follows the Spec Kit workflow. The current feature documents live in `specs/001-metacarpo-website/`:
 
-🚧 In development — v1.0 in progress
-About this project
+```text
+spec.md       # What the site must do
+plan.md       # Architecture and implementation decisions
+tasks.md      # Actionable implementation tasks
+research.md   # Technical decisions
+contracts/    # Route, content, and form contracts
+```
 
-This is a static informational website built following Spec-Driven Development (SDD) methodology. All features are defined in a specification document before any implementation begins.
+## Stack
 
-The site covers:
+- Hugo Extended for static generation
+- Plain HTML templates, CSS custom properties, and vanilla JavaScript
+- Markdown content under `content/en/` and `content/es/`
+- Web3Forms for the contact form
+- Google Analytics 4, loaded asynchronously after consent
 
-  Studio presentation (Team Metacarpo)
+## Local Development
 
-  Main game showcase (Monster Alchemy)
+Install Hugo Extended, then run:
 
-  Projects section
+```bash
+hugo server
+```
 
-  Contact and social links
+Create a production build with:
 
-SDD Structure
+```bash
+hugo --minify
+```
 
-This project follows the Spec Kit workflow. All specification documents live in .speckit/:
+## Configuration
 
-text
-.speckit/
-├── constitution.md     # Project principles and non-negotiables
-├── spec.md             # What the project must do
-├── plan.md             # How it will be built (architecture, stack, decisions)
-└── tasks.md            # Actionable, verifiable implementation tasks
+Set these values before launch:
 
-The spec is the source of truth. No feature is implemented without a corresponding entry in spec.md.
-Tech Stack
+- `params.ga4MeasurementId` in `config/_default/hugo.toml`
+- `params.web3formsAccessKey` in `config/_default/hugo.toml`
+- confirmed social links in `config/_default/hugo.toml`
+- final Monster Alchemy store or wishlist URL in `config/_default/hugo.toml`
 
-  HTML5 — Semantic markup
+The Web3Forms `access_key` is public form configuration required by Web3Forms. Do not commit recipient email addresses, private API keys, or authentication tokens.
 
-  CSS3 — Custom properties, mobile-first, no heavy frameworks
+## Validation
 
-  JavaScript — Vanilla, no frameworks required for v1
+Before release, follow `specs/001-metacarpo-website/quickstart.md`:
 
-Design Direction
+- Build with `hugo --minify`
+- Check `/en/` and `/es/` routes
+- Verify Web3Forms POST behavior
+- Test mobile at 375px
+- Run accessibility, link, performance, and security checks
 
-  Dark backgrounds, light text with slightly warm/yellowish tone
-
-  Atmospheric indie game aesthetic
-
-  Mobile-first, accessible, performant

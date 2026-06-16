@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" role="img" aria-label="Team Metacarpo studio mark">
+  <rect width="640" height="360" fill="#111827"/>
+  <rect x="78" y="64" width="484" height="232" fill="#0a0e1a" stroke="#e8d5b7" stroke-width="4"/>
+  <text x="116" y="164" fill="#e8d5b7" font-family="Arial, sans-serif" font-size="46" font-weight="700">Team</text>
+  <text x="116" y="222" fill="#c9b499" font-family="Arial, sans-serif" font-size="46" font-weight="700">Metacarpo</text>
+  <path d="M432 112v136m-58-68h116" stroke="#e8d5b7" stroke-width="12" stroke-linecap="square"/>
+</svg>
+

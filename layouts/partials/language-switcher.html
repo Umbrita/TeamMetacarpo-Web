@@ -1,0 +1,10 @@
+<nav class="language-switcher" aria-label="{{ if eq .Site.Language.Lang "es" }}Cambiar idioma{{ else }}Change language{{ end }}">
+  <ul>
+    {{ range .AllTranslations }}
+    <li>
+      <a href="{{ .RelPermalink }}" lang="{{ .Language.Lang }}"{{ if eq .Language.Lang $.Site.Language.Lang }} aria-current="page"{{ end }}>{{ upper .Language.Lang }}</a>
+    </li>
+    {{ end }}
+  </ul>
+</nav>
+

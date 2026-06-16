@@ -1,0 +1,18 @@
+<footer class="site-footer">
+  <div class="site-footer__inner">
+    <div>
+      <p class="site-footer__brand">Team Metacarpo</p>
+      <p class="site-footer__copy">&copy; {{ now.Year }} {{ site.Params.copyright }}. {{ if eq .Site.Language.Lang "es" }}Todos los derechos reservados.{{ else }}All rights reserved.{{ end }}</p>
+    </div>
+    <nav aria-label="{{ if eq .Site.Language.Lang "es" }}Enlaces de pie{{ else }}Footer links{{ end }}">
+      <ul class="site-footer__links">
+        <li><a href="{{ "/presskit" | relLangURL }}">Presskit</a></li>
+        <li><a href="{{ "/contact" | relLangURL }}">{{ if eq .Site.Language.Lang "es" }}Contacto{{ else }}Contact{{ end }}</a></li>
+        {{ range site.Params.social }}
+        <li><a href="{{ .url }}" target="_blank" rel="noopener noreferrer">{{ .name }}</a></li>
+        {{ end }}
+      </ul>
+    </nav>
+    {{ partial "language-switcher.html" . }}
+  </div>
+</footer>

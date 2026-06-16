@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 540" role="img" aria-label="Monster Alchemy gameplay screenshot placeholder">
+  <rect width="960" height="540" fill="#0a0e1a"/>
+  <rect x="72" y="72" width="816" height="396" fill="#152033" stroke="#e8d5b7" stroke-width="4"/>
+  <rect x="140" y="306" width="680" height="82" fill="#2c2330"/>
+  <circle cx="258" cy="248" r="54" fill="#c9b499"/>
+  <rect x="382" y="174" width="196" height="150" fill="#0a0e1a" stroke="#e8d5b7" stroke-width="4"/>
+  <path d="M656 262c40-64 110-50 126 14 10 42-18 82-66 82-58 0-88-50-60-96z" fill="#e8d5b7"/>
+  <text x="142" y="430" fill="#e8d5b7" font-family="Arial, sans-serif" font-size="24">Craft, study, and reshape strange creatures.</text>
+</svg>
+
